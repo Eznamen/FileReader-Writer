@@ -2,8 +2,8 @@ import java.io.*;
 
 
 public class Basket {
-    private String[] products;
-    private int[] prices;
+    private static String[] products;
+    private static int[] prices;
     private static int[] basket;
     private static String[] addedProd;
 
@@ -43,38 +43,38 @@ public class Basket {
 
     public void printCart() {
         int productSum = 0;
-        System.out.println("Ваша корзина:");
+        System.out.println("Р’Р°С€Р° РєРѕСЂР·РёРЅР°:");
         for (int i = 0; i < getBasket().length; i++) {
             if (getBasket()[i] > 0) {
-                System.out.println(getAddedProd()[i] + " " + getBasket()[i] + " шт, на сумму: " + (getBasket()[i] * getPrices()[i]) + " $");
+                System.out.println(getAddedProd()[i] + " " + getBasket()[i] + " С€С‚., РїРѕ С†РµРЅРµ: " + (getBasket()[i] * getPrices()[i]) + " $");
                 productSum = productSum + (getBasket()[i] * getPrices()[i]);
             }
         }
-        System.out.println("Итого: " + productSum + " $");
+        System.out.println("РС‚РѕРіРѕ:" + productSum + " $");
     }
 
     public void saveTxt(File textFile) throws IOException {
 
-        try (PrintWriter out = new PrintWriter(textFile);) {
-            for (int i = 0; i < getBasket().length; i++) {
-                if (getBasket()[i] != 0) {
-                    out.print(getAddedProd()[i] + " ");
+        try (PrintWriter out = new PrintWriter(textFile)) {
+            for (int i = 0; i < addedProd.length; i++) {
+                if (addedProd[i] == null) {
+                    continue;
                 } else {
-                    break;
+                    out.print(addedProd[i] + " ");
                 }
             }
             out.println();
-            for (Integer e : getBasket()) {
-                if (e != 0) {
-                    out.print(e + " ");
+            for (Integer e : basket) {
+                if (basket[e] != 0) {
+                    continue;
                 } else {
-                    break;
+                    out.print(e + " ");
                 }
             }
         }
     }
 
-    public static void loadFromTxtFile(File file) throws IOException {
+    public static Basket loadFromTxtFile(File file) throws IOException, NullPointerException {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String[] addedProdTxt = reader.readLine().split(" ");
             for (int i = 0; i < addedProdTxt.length; i++) {
@@ -87,7 +87,8 @@ public class Basket {
                 basket[i] = Integer.parseInt(addedProd[i]);
                 System.out.print(basket[i] + " ");
             }
-            return;
+            Basket basket1 = new Basket(products, prices);
+            return basket1;
         }
     }
 }

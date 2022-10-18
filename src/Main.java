@@ -9,8 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Basket market = new Basket(new String[]{"Milk", "eggs", "bread", "cheese"}, new int[]{90, 140, 60, 300});
         if (file.exists()) {
-            market.loadFromTxtFile(file);
-
+            Basket.loadFromTxtFile(file);
         } else {
             while (true) {
                 System.out.println("Продукты в магазине:");
