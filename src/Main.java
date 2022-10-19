@@ -11,6 +11,7 @@ public class Main {
         if (file.exists()) {
             Basket.loadFromTxtFile(file);
         } else {
+
             while (true) {
                 System.out.println("Продукты в магазине:");
                 for (int i = 0; i < market.getProducts().length; i++) {
