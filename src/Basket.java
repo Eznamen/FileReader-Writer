@@ -4,14 +4,14 @@ import java.io.*;
 public class Basket {
     private String[] products;
     private int[] prices;
-    private Integer[] basket;
+    private int[] basket;
     private String[] addedProd;
 
     public Basket(String[] products, int[] prices) {
         this.products = products;
         this.prices = prices;
         this.addedProd = new String[products.length];
-        this.basket = new Integer[products.length];
+        this.basket = new int[products.length];
     }
 
     public String[] getProducts() {
@@ -37,7 +37,7 @@ public class Basket {
         }
     }
 
-    public Integer[] getBasket() {
+    public int[] getBasket() {
         return basket;
     }
 
