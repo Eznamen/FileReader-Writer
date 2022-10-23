@@ -15,8 +15,9 @@ public class ClientLog {
     }
 
 
+
     public void exportAsCSV(File txtFile) {
-        try (CSVW ){
+        try (CSVWriter){
 
         }
 
