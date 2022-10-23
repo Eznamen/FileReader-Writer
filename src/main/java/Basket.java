@@ -27,6 +27,7 @@ public class Basket {
     }
 
     public void addToCart(int productNum, int amount) {
+
         if ((productNum + 1) != 0) {
             if (basket[productNum] == 0) {
                 basket[productNum] = amount;
