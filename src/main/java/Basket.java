@@ -53,8 +53,19 @@ public class Basket {
         System.out.println("Итого:" + productSum + " $");
     }
 
+
     public void saveTxt(File textFile) throws IOException {
         try (PrintWriter out = new PrintWriter(textFile)) {
+            for (String prod :
+                    getProducts()) {
+                out.print(prod + " ");
+            }
+            out.println();
+            for (int price :
+                    getPrices()) {
+                out.print(price + " ");
+            }
+            out.println();
             for (int i = 0; i < addedProd.length; i++) {
                 if (addedProd[i] == null) {
                     continue;
@@ -75,8 +86,23 @@ public class Basket {
     }
 
     public static Basket loadFromTxtFile(File file) throws IOException, NullPointerException {
-        Basket basket1 = new Basket(new String[]{"Milk", "eggs", "bread", "cheese"}, new int[]{90, 140, 60, 300});
+
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String[] prodTxt = reader.readLine().split(" ");
+            for (int k = 0; k < prodTxt.length; k++) {
+                System.out.print(prodTxt[k] + " ");
+            }
+            System.out.println();
+
+            String[] priceTxt = reader.readLine().split(" ");
+            int[] pr = new int[priceTxt.length];
+            for (int k = 0; k < priceTxt.length; k++) {
+                pr[k] = Integer.parseInt(priceTxt[k]);
+                System.out.print(pr[k] + " ");
+            }
+            System.out.println();
+            Basket basket1 = new Basket(prodTxt, pr);
+
             String[] addedProdTxt = reader.readLine().split(" ");
             for (int i = 0; i < addedProdTxt.length; i++) {
                 basket1.addedProd[i] = addedProdTxt[i];

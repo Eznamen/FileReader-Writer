@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        File file = new File("src/basket.txt");
+        File file = new File("src/main/java/basket.txt");
 
         Scanner scanner = new Scanner(System.in);
         Basket market = new Basket(new String[]{"Milk", "eggs", "bread", "cheese"}, new int[]{90, 140, 60, 300});
