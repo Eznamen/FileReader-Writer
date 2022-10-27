@@ -5,6 +5,7 @@
 *.iml
 /out/
 /target/
+/build/
 
 
 # Log file
