@@ -1,4 +1,7 @@
+import org.json.simple.JSONObject;
+
 import java.io.*;
+import java.util.Arrays;
 
 
 public class Basket {
@@ -115,6 +118,19 @@ public class Basket {
                 System.out.print(basket1.basket[i] + " ");
             }
             return basket1;
+        }
+    }
+
+    public void saveJson(File jsonFile) throws IOException{
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("amount", Arrays.toString(this.getBasket()));
+        jsonObject.put("added products", Arrays.toString(this.getAddedProd()));
+        jsonObject.put("prices", Arrays.toString(this.getPrices()));
+        jsonObject.put("products", Arrays.toString(this.getProducts()));
+
+        try (FileWriter fileJ = new FileWriter(jsonFile)) {
+            fileJ.write(jsonObject.toJSONString());
         }
     }
 }
